@@ -39,7 +39,7 @@ function singles(
 
 /**
  * Qiskit little-endian QFT (qubit 0 is the least significant bit), including
- * the final bit reversal so amplitudes match \u03a3 exp(2\u03c0i x k / N) |k\u27e9.
+ * the final bit reversal so amplitudes match Σ exp(2πi x k / N) |k⟩.
  */
 function qftOps(preset: string, n: number, column0: number): GateOp[] {
   const gates: GateOp[] = [];
@@ -64,20 +64,20 @@ export const PRESETS: Preset[] = [
   {
     id: "bell",
     name: "Bell pair",
-    blurb: "(|00\u27e9 + |11\u27e9) / \u221a2. Each Bloch sphere looks mixed \u2014 the entanglement is in the pair, not in either qubit.",
+    blurb: "(|00⟩ + |11⟩) / √2. Each Bloch sphere looks mixed — the entanglement is in the pair, not in either qubit.",
     n: 2,
     gates: [op("bell", "H", [0], 0), op("bell", "CNOT", [0, 1], 1)],
   },
   {
     id: "plus",
     name: "Plus state",
-    blurb: "H|0\u27e9 = |+\u27e9, the +X pole of the Bloch sphere. A second H brings it home.",
+    blurb: "H|0⟩ = |+⟩, the +X pole of the Bloch sphere. A second H brings it home.",
     n: 1,
     gates: [op("plus", "H", [0], 0)],
   },
   {
     id: "phase",
-    name: "T on |+\u27e9",
+    name: "T on |+⟩",
     blurb: "Hadamard, then T. The state sits on the equator, halfway from +X toward +Y.",
     n: 1,
     gates: [op("phase", "H", [0], 0), op("phase", "T", [0], 1)],
@@ -85,14 +85,14 @@ export const PRESETS: Preset[] = [
   {
     id: "interfere",
     name: "Interference",
-    blurb: "H, Z, H sends |0\u27e9 to |1\u27e9. The phase kick from Z becomes a bit you can measure.",
+    blurb: "H, Z, H sends |0⟩ to |1⟩. The phase kick from Z becomes a bit you can measure.",
     n: 1,
     gates: [op("interfere", "H", [0], 0), op("interfere", "Z", [0], 1), op("interfere", "H", [0], 2)],
   },
   {
     id: "ghz",
     name: "GHZ",
-    blurb: "(|000\u27e9 + |111\u27e9) / \u221a2. The three-qubit cousin of the Bell pair.",
+    blurb: "(|000⟩ + |111⟩) / √2. The three-qubit cousin of the Bell pair.",
     n: 3,
     gates: [
       op("ghz", "H", [0], 0),
@@ -102,8 +102,8 @@ export const PRESETS: Preset[] = [
   },
   {
     id: "deutsch-c",
-    name: "Deutsch \u00b7 constant",
-    blurb: "One query, constant oracle. Qubit 0 reads 0 \u2014 the hidden function ignores its input.",
+    name: "Deutsch · constant",
+    blurb: "One query, constant oracle. Qubit 0 reads 0 — the hidden function ignores its input.",
     n: 2,
     gates: [
       op("deutsch-c", "X", [1], 0),
@@ -113,8 +113,8 @@ export const PRESETS: Preset[] = [
   },
   {
     id: "deutsch-b",
-    name: "Deutsch \u00b7 balanced",
-    blurb: "Same preparation, but the oracle is a CNOT. Qubit 0 reads 1 \u2014 the function is balanced.",
+    name: "Deutsch · balanced",
+    blurb: "Same preparation, but the oracle is a CNOT. Qubit 0 reads 1 — the function is balanced.",
     n: 2,
     gates: [
       op("deutsch-b", "X", [1], 0),
@@ -125,8 +125,8 @@ export const PRESETS: Preset[] = [
   },
   {
     id: "grover",
-    name: "Grover \u00b7 |11\u27e9",
-    blurb: "One Grover iterate. The CZ oracle marks |11\u27e9 and diffusion turns that mark into a certainty.",
+    name: "Grover · |11⟩",
+    blurb: "One Grover iterate. The CZ oracle marks |11⟩ and diffusion turns that mark into a certainty.",
     n: 2,
     gates: [
       ...singles("grover", "H", [0, 1], 0),
@@ -140,15 +140,15 @@ export const PRESETS: Preset[] = [
   },
   {
     id: "qft",
-    name: "QFT of |001\u27e9",
-    blurb: "Fourier transform of the basis state |001\u27e9. Every amplitude has size 1/\u221a8, with phase stepping by 45\u00b0.",
+    name: "QFT of |001⟩",
+    blurb: "Fourier transform of the basis state |001⟩. Every amplitude has size 1/√8, with phase stepping by 45°.",
     n: 3,
     gates: [op("qft", "X", [0], 0), ...qftOps("qft", 3, 1)],
   },
   {
     id: "vacuum",
-    name: "Vacuum |0\u20260\u27e9",
-    blurb: "Nothing on the wires. The register sits in |0\u27e9, ready for a gate.",
+    name: "Vacuum |0…0⟩",
+    blurb: "Nothing on the wires. The register sits in |0⟩, ready for a gate.",
     n: 1,
     gates: [],
   },

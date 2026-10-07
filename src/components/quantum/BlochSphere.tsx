@@ -71,10 +71,10 @@ export function BlochSphere({
         <line x1={ay.x1} y1={ay.y1} x2={ay.x2} y2={ay.y2} stroke="currentColor" strokeOpacity={0.35} />
         <line x1={az.x1} y1={az.y1} x2={az.x2} y2={az.y2} stroke="currentColor" strokeOpacity={0.35} />
         <text x={north[0]} y={north[1]} textAnchor="middle" fill="currentColor" fontSize="11" fontFamily="IBM Plex Mono, ui-monospace, monospace">
-          |0\u27e9
+          |0⟩
         </text>
         <text x={south[0]} y={south[1]} textAnchor="middle" fill="currentColor" fontSize="11" fontFamily="IBM Plex Mono, ui-monospace, monospace">
-          |1\u27e9
+          |1⟩
         </text>
         <line
           x1={ox}

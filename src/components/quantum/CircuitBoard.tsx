@@ -51,7 +51,7 @@ export function CircuitBoard({
           <div key={q} style={{ height: ROW }} className="flex items-center justify-end pr-2">
             <div className="text-right leading-tight">
               <div className="font-mono text-sm text-fg">q{q}</div>
-              <div className="font-mono text-xs text-muted">|0\u27e9</div>
+              <div className="font-mono text-xs text-muted">|0⟩</div>
             </div>
           </div>
         ))}
@@ -133,7 +133,7 @@ export function CircuitBoard({
         {ones.map((p, q) => (
           <div key={q} style={{ height: ROW }} className="flex items-center pl-2">
             <div className="leading-tight">
-              <div className="font-mono text-xs text-muted">P\u2081</div>
+              <div className="font-mono text-xs text-muted">P₁</div>
               <div className="font-mono text-sm tabular-nums text-fg">{Math.round(p * 100)}%</div>
             </div>
           </div>
